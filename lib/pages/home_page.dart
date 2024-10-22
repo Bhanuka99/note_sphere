@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notesphere/utils/constants.dart';
+import 'package:notesphere/utils/router.dart';
 import 'package:notesphere/utils/text_styles.dart';
 import 'package:notesphere/widgets/notes_todo_card.dart';
 import 'package:notesphere/widgets/progress_card.dart';
@@ -21,39 +22,51 @@ class _HomePageState extends State<HomePage> {
           style: AppTextStyles.appTitle
           ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(8),
+      body: Padding(
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: AppConstants.kDefaultPadding
             ),
-            ProgressCard(
+            const ProgressCard(
               completedTask: 5,
               totalTask: 5,
             ),
-            SizedBox(
+            const SizedBox(
               height: AppConstants.kDefaultPadding*1.5
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                NotesTodoCard(
-                  title: "Note", 
-                  descript: "3 Notes", 
-                  icon: Icons.bookmark_add_outlined
+                GestureDetector(
+                  onTap: () {
+                    //goto notes page
+                    AppRouter.router.push("/notes");
+                  },
+                  child: const NotesTodoCard(
+                    title: "Note", 
+                    descript: "3 Notes", 
+                    icon: Icons.bookmark_add_outlined
+                  ),
                 ),
-                NotesTodoCard(
-                  title: "To-Do List", 
-                  descript: "3 Tasks", 
-                  icon: Icons.today_outlined
-                ),
+                 GestureDetector(
+                  onTap: () {
+                    //goto todo page
+                    AppRouter.router.push("/todos");
+                  },
+                   child: const NotesTodoCard(
+                    title: "To-Do List", 
+                    descript: "3 Tasks", 
+                    icon: Icons.today_outlined
+                  ),
+                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: AppConstants.kDefaultPadding
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Today's Progress",style: AppTextStyles.appSubtitle,),
