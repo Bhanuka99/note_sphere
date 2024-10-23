@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:notesphere/pages/models/note_model.dart';
+import 'package:notesphere/models/note_model.dart';
 import 'package:uuid/uuid.dart';
 
 class NoteService{
@@ -68,6 +68,20 @@ class NoteService{
       }
     }
     return notesByCategory;
+  }
+
+  //method to get notes according to category
+  Future <List<Note>> getNotesByCategoryName(String category) async {
+
+    final dynamic allNotes = await _myBox.get("notes");
+    final List<Note> notes = [];
+
+    for(final note in allNotes){
+      if(note.category == category){
+        notes.add(note);
+      }
+    }
+    return notes;
   }
 
 }

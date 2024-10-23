@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:notesphere/pages/models/note_model.dart';
-import 'package:notesphere/pages/models/todo_model.dart';
+import 'package:notesphere/models/note_model.dart';
+import 'package:notesphere/models/todo_model.dart';
 import 'package:notesphere/utils/router.dart';
 import 'package:notesphere/utils/theme_data.dart';
 
