@@ -9,7 +9,7 @@ class NoteService{
       id: const Uuid().v4(),
       title: "Meeting Notes", 
       category: "Work", 
-      content: "Discussed project deadlines and deliverables. Assigned tasks to team      members and set up follow-up meetings to track progress.", 
+      content: "Discussed project deadlines and deliverables. Assigned tasks to team members and set up follow-up meetings to track progress.", 
       date: DateTime.now()
     ),
      Note(
@@ -83,5 +83,30 @@ class NoteService{
     }
     return notes;
   }
+  //method to update a note
+  Future<void> updateNote (Note note)async {
+    try{
 
+      final dynamic allNotes = await _myBox.get("notes");
+      final int index = allNotes.indexWhere((element) => element.id == note.id);
+
+      allNotes[index] = note;
+      await _myBox.put("notes", allNotes);
+
+    }
+    catch(err){
+      print(err.toString());
+    }
+  }
+
+  //method to delete a note
+  Future<void> deleteNote (String noteId) async {
+    try{
+      final dynamic allNotes = await _myBox.get("notes");
+      allNotes.removeWhere((element) => element.id == noteId);
+      await _myBox.put("notes", allNotes);
+    }catch(err){
+      print(err.toString());
+    }
+  }
 }
