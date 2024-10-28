@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notesphere/models/note_model.dart';
 import 'package:notesphere/pages/create_new_note.dart';
+import 'package:notesphere/pages/edit_note_page.dart';
 import 'package:notesphere/pages/home_page.dart';
 import 'package:notesphere/pages/note_by_category_page.dart';
 import 'package:notesphere/pages/notes_page.dart';
@@ -55,6 +57,15 @@ class AppRouter{
           return CreateNewNote(isNewCategory: isNewCategoryPage);
         },
       ),
+      //edit page
+      GoRoute(
+        name: "edit note",
+        path: "/edit-note",
+        builder: (context, state) {
+          final Note note = state.extra as Note;
+          return EditNotePage(note: note,);
+        },
+      )
     ]
   );
 }
