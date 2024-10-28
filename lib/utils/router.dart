@@ -7,6 +7,7 @@ import 'package:notesphere/pages/home_page.dart';
 import 'package:notesphere/pages/note_by_category_page.dart';
 import 'package:notesphere/pages/notes_page.dart';
 import 'package:notesphere/pages/todo_page.dart';
+import 'package:notesphere/pages/view_note_page.dart';
 
 class AppRouter{
   static final router = GoRouter(
@@ -65,7 +66,16 @@ class AppRouter{
           final Note note = state.extra as Note;
           return EditNotePage(note: note,);
         },
-      )
+      ),
+      //view note page
+      GoRoute(
+        name: "view note",
+        path: "/view-note",
+        builder: (context, state) {
+          final Note note = state.extra as Note;
+          return ViewNotePage(note: note,);
+        },
+      ),
     ]
   );
 }
