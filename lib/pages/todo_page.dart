@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notesphere/models/todo_model.dart';
 import 'package:notesphere/services/todo_service.dart';
 import 'package:notesphere/utils/colors.dart';
+import 'package:notesphere/utils/router.dart';
 import 'package:notesphere/utils/text_styles.dart';
 import 'package:notesphere/widgets/completed_tab.dart';
 import 'package:notesphere/widgets/todo_tab.dart';
@@ -49,6 +50,12 @@ class _TodoPageState extends State<TodoPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(onPressed: (){
+          //goto home page
+          AppRouter.router.go("/");
+        }, 
+        icon: const Icon(Icons.arrow_back)),
         bottom: TabBar(
           dividerHeight: 0,
           controller: _tabController,
@@ -90,9 +97,11 @@ class _TodoPageState extends State<TodoPage> with SingleTickerProviderStateMixin
         children:[
           TodoTab(
             incompletedTodos: incompletedTodos,
+            completedTodos: completedTodos,
           ),
           CompletedTab(
             completedTodos: completedTodos,
+            incompletedTodos: incompletedTodos,
           ),
         ]
       ),

@@ -49,4 +49,18 @@ class TodoService {
     }
     return [];
   }
+
+  //mark the todo as done
+  Future <void> markAsDone (Todo todo) async {
+    try{
+    final dynamic todos = await _myBox.get("todos");
+    final int index = todos.indexWhere((element)=> element.id == todo.id);
+    todos[index] = todo;
+
+    await _myBox.put("todos", todos);
+
+    }catch(err){
+      print(err.toString());
+    }
+  }
 }
