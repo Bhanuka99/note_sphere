@@ -73,6 +73,17 @@ class TodoService {
       print(err.toString());
   }
 }
+  //method to delete a task
+  Future<void> deleteTodo(Todo todo) async {
+    try{
+      final dynamic todos = await _myBox.get("todos");
+      todos.remove(todo);
+      
+      await _myBox.put("todos", todos);
+    }catch(err){
+      print(err.toString());
+    }
+  }
 
 
 }
