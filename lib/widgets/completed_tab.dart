@@ -24,6 +24,7 @@ class _CompletedTabState extends State<CompletedTab> {
   void _markTodoAsNotDone (Todo todo) async {
     try{
       final Todo updatedTodo = Todo(
+        id: todo.id,
         title: todo.title, 
         date: todo.date, 
         time: todo.time, 

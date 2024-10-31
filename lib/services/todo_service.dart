@@ -63,4 +63,16 @@ class TodoService {
       print(err.toString());
     }
   }
+  //method to add a task
+  Future<void> addTodo (Todo todo) async {
+  try{
+    final dynamic todos = await _myBox.get("todos");
+    todos.add(todo);
+    await _myBox.put("todos", todos);
+  }catch(err){
+      print(err.toString());
+  }
+}
+
+
 }
