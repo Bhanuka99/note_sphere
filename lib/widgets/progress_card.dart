@@ -21,8 +21,8 @@ class _ProgressCardState extends State<ProgressCard> {
   Widget build(BuildContext context) {
 
     //calculation for progress percentage
-    num completedPercentage = widget.totalTask !=0 ? 
-          ((widget.completedTask/widget.totalTask)*100).round(): 0;
+    double completedPercentage = widget.totalTask !=0 ? 
+          (widget.completedTask/widget.totalTask)*100 : 0;
     return Container(
       padding: const EdgeInsets.all(AppConstants.kDefaultPadding),
       decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class _ProgressCardState extends State<ProgressCard> {
               ),
               Positioned.fill(child: Center(
                 child: Text(
-                  "$completedPercentage%",
+                  "${completedPercentage.toStringAsFixed(1)}%",
                   style: AppTextStyles.appSubtitle.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.bold

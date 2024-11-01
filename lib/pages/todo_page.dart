@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notesphere/helpers/snackbar.dart';
 import 'package:notesphere/models/todo_model.dart';
+import 'package:notesphere/pages/todo_data_widget.dart';
 import 'package:notesphere/services/todo_service.dart';
 import 'package:notesphere/utils/colors.dart';
 import 'package:notesphere/utils/router.dart';
@@ -67,6 +68,10 @@ class _TodoPageState extends State<TodoPage> with SingleTickerProviderStateMixin
         isDone: false,
       );
       await todoService.addTodo(newTodo);
+      _loadTodos();
+      if(TodoData.of(context) != null){
+        TodoData.of(context)!.updateTodos(allTodos);
+      }
       setState(() {
         allTodos.add(newTodo);
         incompletedTodos.add(newTodo);
@@ -152,7 +157,7 @@ class _TodoPageState extends State<TodoPage> with SingleTickerProviderStateMixin
         automaticallyImplyLeading: false,
         leading: IconButton(onPressed: (){
           //goto home page
-          AppRouter.router.go("/");
+          AppRouter.router.push("/");
         }, 
         icon: const Icon(Icons.arrow_back)),
         bottom: TabBar(
